@@ -34,7 +34,7 @@ export default class Login extends Component {
       isLoading: true,
     }));
 
-    createUser({ loginName }).then(() => {
+    createUser({ name: loginName }).then(() => {
       this.setState((prevState) => ({
         ...prevState,
         search: true,
