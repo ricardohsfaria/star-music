@@ -14,7 +14,10 @@ export default class Album extends Component {
         <Link
           data-testid={ `link-to-album-${albumId}` }
           to={ `/album/${albumId}` }
-        />
+        >
+          Ver albúm
+
+        </Link>
       </div>
     );
   }
