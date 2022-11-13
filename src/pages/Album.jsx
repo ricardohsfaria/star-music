@@ -18,15 +18,8 @@ export default class Album extends Component {
     this.setState({ album: albumDetails.slice(1), info, isLoading: false });
   }
 
-  // verifyArrayType = () => {
-  //   const { album } = this.state;
-  //   let id = '';
-  //   if()
-  // };
-
   render() {
     const { info: { artistName, collectionName }, album, isLoading } = this.state;
-    // album.slice(1);
     return (
       <div>
         <section data-testid="page-album">
@@ -41,6 +34,8 @@ export default class Album extends Component {
               key={ song.trackId }
               trackName={ song.trackName }
               previewUrl={ song.previewUrl }
+              trackId={ song.trackId }
+              album={ album }
             />
           ))}
         </section>
