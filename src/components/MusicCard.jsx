@@ -26,7 +26,7 @@ class MusicCard extends Component {
   };
 
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
+    const { trackName, previewUrl, trackId, restauredSongs } = this.props;
     const { loading } = this.state;
     return (
       <div>
@@ -44,6 +44,7 @@ class MusicCard extends Component {
             id={ trackId }
             name="favorita"
             onChange={ this.onInputChange }
+            checked={ restauredSongs.some((song) => song.trackId === trackId) }
           />
 
         </label>
@@ -62,4 +63,5 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   album: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
+  restauredSongs: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
 };

@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 export default class Album extends Component {
   state = {
     album: [],
     info: [],
     isLoading: true,
+    restauredSongs: [],
   };
 
   async componentDidMount() {
@@ -16,10 +18,16 @@ export default class Album extends Component {
     const albumDetails = await getMusics(id);
     const info = albumDetails[0];
     this.setState({ album: albumDetails.slice(1), info, isLoading: false });
+
+    this.setState({ isLoading: true });
+    const restaureSongs = await getFavoriteSongs();
+    this.setState({ isLoading: false, restauredSongs: restaureSongs });
   }
 
   render() {
-    const { info: { artistName, collectionName }, album, isLoading } = this.state;
+    const {
+      info: { artistName, collectionName },
+      album, isLoading, restauredSongs } = this.state;
     return (
       <div>
         <section data-testid="page-album">
@@ -36,6 +44,7 @@ export default class Album extends Component {
               previewUrl={ song.previewUrl }
               trackId={ song.trackId }
               album={ album }
+              restauredSongs={ restauredSongs }
             />
           ))}
         </section>
