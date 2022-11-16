@@ -6,7 +6,15 @@ import Loading from '../pages/Loading';
 class MusicCard extends Component {
   state = {
     loading: false,
+    favorite: false,
   };
+
+  componentDidMount() {
+    const { trackId, favoriteSongs } = this.props;
+    if (favoriteSongs.includes(trackId)) {
+      this.setState({ favorite: true, loading: false });
+    }
+  }
 
   addSongToFavorites = async (track) => {
     this.setState({ loading: true });
@@ -15,19 +23,18 @@ class MusicCard extends Component {
   };
 
   onInputChange = ({ target }) => {
-    const { name, checked } = target;
-    const value = target.checked;
+    const { name, checked, id } = target;
 
-    this.setState({ [name]: value });
+    this.setState({ [name]: checked });
 
     const { album } = this.props;
-    const track = album.find(({ trackId }) => trackId === Number(name));
+    const track = album.find(({ trackId }) => trackId === Number(id));
     if (checked) this.addSongToFavorites(track);
   };
 
   render() {
-    const { trackName, previewUrl, trackId, restauredSongs } = this.props;
-    const { loading } = this.state;
+    const { trackName, previewUrl, trackId } = this.props;
+    const { loading, favorite } = this.state;
     return (
       <div>
         <p>{trackName}</p>
@@ -42,9 +49,9 @@ class MusicCard extends Component {
             type="checkbox"
             data-testid={ `checkbox-music-${trackId}` }
             id={ trackId }
-            name="favorita"
+            name="favorite"
             onChange={ this.onInputChange }
-            checked={ restauredSongs.some((song) => song.trackId === trackId) }
+            checked={ favorite }
           />
 
         </label>
@@ -63,5 +70,5 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   album: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
-  restauredSongs: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
+  favoriteSongs: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
 };

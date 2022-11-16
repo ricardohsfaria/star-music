@@ -10,24 +10,35 @@ export default class Album extends Component {
     album: [],
     info: [],
     isLoading: true,
-    restauredSongs: [],
+    favoriteSongs: [],
   };
 
   async componentDidMount() {
+    this.setState({ isLoading: true });
     const { match: { params: { id } } } = this.props;
     const albumDetails = await getMusics(id);
     const info = albumDetails[0];
-    this.setState({ album: albumDetails.slice(1), info, isLoading: false });
 
-    this.setState({ isLoading: true });
-    const restaureSongs = await getFavoriteSongs();
-    this.setState({ isLoading: false, restauredSongs: restaureSongs });
+    const data = await getFavoriteSongs();
+    const favoriteSongs = data.map((song) => song.trackId);
+    this.setState({ album: albumDetails.slice(1),
+      info,
+      favoriteSongs,
+      isLoading: false,
+    });
   }
+
+  // adsToFavorite = async () => {
+  //   this.setState({ isLoading: true });
+  //   const restaureSongs = await getFavoriteSongs(restauredSongs);
+  //   this.setState({ isLoading: false, restauredSongs: restaureSongs });
+  //   console.log(restaureSongs);
+  // };
 
   render() {
     const {
       info: { artistName, collectionName },
-      album, isLoading, restauredSongs } = this.state;
+      album, isLoading, favoriteSongs } = this.state;
     return (
       <div>
         <section data-testid="page-album">
@@ -44,7 +55,7 @@ export default class Album extends Component {
               previewUrl={ song.previewUrl }
               trackId={ song.trackId }
               album={ album }
-              restauredSongs={ restauredSongs }
+              favoriteSongs={ favoriteSongs }
             />
           ))}
         </section>
