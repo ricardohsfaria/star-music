@@ -8,7 +8,7 @@ const MIN_NAME_LENGTH = 3;
 
 export default class Login extends Component {
   state = {
-    loginName: 'a',
+    loginName: '',
     isButtonDisabled: true,
     isLoading: false,
     search: false,

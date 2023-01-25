@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+font-size: 1.5em;
+text-align: center;
+color: palevioletred;
+`;
 
 export default class Form extends Component {
   render() {
@@ -11,7 +18,10 @@ export default class Form extends Component {
     } = this.props;
     return (
       <div>
-        <h1>Login</h1>
+        <Title>
+          Login
+        </Title>
+        {' '}
         <form action="">
           <label htmlFor="loginName">
             <input
