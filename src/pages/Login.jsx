@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import Loading from './Loading';
 import Form from './Form';
 import { createUser } from '../services/userAPI';
 
 const MIN_NAME_LENGTH = 3;
+
+const Background = styled.div`
+background: rgb(0,17,65);
+background: linear-gradient(rgba(166, 66, 215, 1) 48%, rgba(255, 222, 0, 1) 100%);
+display: flex;
+align-items: center;
+height: 100vh;
+justify-content: center;
+`;
 
 export default class Login extends Component {
   state = {
@@ -50,14 +60,16 @@ export default class Login extends Component {
       search,
     } = this.state;
     return (
-      <div data-testid="page-login">
-        { isLoading ? <Loading /> : <Form
-          LoginName={ loginName }
-          isButtonDisabled={ isButtonDisabled }
-          onInputChange={ this.onInputChange }
-          createUserAndRedirect={ this.createUserAndRedirect }
-        />}
-        {search ? <Redirect to="/search" /> : ''}
+      <div>
+        <Background data-testid="page-login">
+          { isLoading ? <Loading /> : <Form
+            LoginName={ loginName }
+            isButtonDisabled={ isButtonDisabled }
+            onInputChange={ this.onInputChange }
+            createUserAndRedirect={ this.createUserAndRedirect }
+          />}
+          {search ? <Redirect to="/search" /> : ''}
+        </Background>
       </div>
     );
   }

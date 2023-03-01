@@ -4,6 +4,9 @@ import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './Search.css';
+import './Album.css';
+import Loading from './Loading';
 
 export default class Album extends Component {
   state = {
@@ -40,14 +43,28 @@ export default class Album extends Component {
       info: { artistName, collectionName },
       album, isLoading, favoriteSongs } = this.state;
     return (
-      <div>
-        <section data-testid="page-album">
-          <Header />
-          <h3>{ isLoading ? 'Carregando' : ''}</h3>
-          <h3 data-testid="artist-name">{artistName}</h3>
-          <h4 data-testid="album-name">{collectionName}</h4>
+      <div className="album-container">
+        <Header />
+        <div className="upper-bar" />
+        <section className="album-details">
+          <h3>{ isLoading && <Loading />}</h3>
+          <div data-testid="page-album" className="album-details_cover">
+            {album.length > 0 && (
+              <div>
+                <img
+                  src={ album[0].artworkUrl100 }
+                  alt="album cover"
+                  className="album-cover"
+                />
+              </div>
+            )}
+            <div className="album-details_info">
+              <h3 data-testid="artist-name">{artistName}</h3>
+              <h4 data-testid="album-name" className="album-name">{collectionName}</h4>
+            </div>
+          </div>
         </section>
-        <section>
+        <section className="songs-container">
           {album.map((song) => (
             <MusicCard
               key={ song.trackId }

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+// import { faHeart } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
+import './MusicCard.css';
 
 class MusicCard extends Component {
   state = {
@@ -36,25 +39,36 @@ class MusicCard extends Component {
     const { trackName, previewUrl, trackId } = this.props;
     const { loading, favorite } = this.state;
     return (
-      <div>
-        <p>{trackName}</p>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          <code>audio</code>
-        </audio>
-        <label htmlFor={ trackId }>
-          Favorita
-          <input
-            type="checkbox"
-            data-testid={ `checkbox-music-${trackId}` }
-            id={ trackId }
-            name="favorite"
-            onChange={ this.onInputChange }
-            checked={ favorite }
-          />
+      <div className="card-container">
+        <div className="song-name-container">
+          <p>{trackName}</p>
+        </div>
+        <div className="audio-container">
+          <audio
+            data-testid="audio-component"
+            src={ previewUrl }
+            controls
+            className="audio"
+          >
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            <code>audio</code>
+          </audio>
+        </div>
+        <div className="checkbox">
+          <label htmlFor={ trackId }>
+            {/* <FontAwesomeIcon icon={ faHeart } className="search-input-icon" /> */}
+            <input
+              type="checkbox"
+              data-testid={ `checkbox-music-${trackId}` }
+              id={ trackId }
+              name="favorite"
+              onChange={ this.onInputChange }
+              checked={ favorite }
+            />
 
-        </label>
+          </label>
+        </div>
         <section>
           {loading && <Loading />}
         </section>

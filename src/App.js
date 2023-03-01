@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import Login from './pages/Login';
 import Search from './pages/Search';
 import Album from './pages/Album';
@@ -8,10 +9,14 @@ import Profile from './pages/Profile';
 import ProfileEdit from './pages/ProfileEdit';
 import NotFound from './pages/NotFound';
 
+const AppStyled = styled.div`
+background-color: #000000;
+`;
+
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <AppStyled>
         <Switch>
           <Route
             exact
@@ -25,7 +30,7 @@ class App extends React.Component {
           <Route exact path="/profile/edit" component={ ProfileEdit } />
           <Route component={ NotFound } />
         </Switch>
-      </div>
+      </AppStyled>
     );
   }
 }
