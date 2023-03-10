@@ -6,7 +6,10 @@ import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import './Search.css';
 import './Album.css';
-import Loading from './Loading';
+import AlbumLoading from '../components/AlbumLoading';
+import SongsLoading from '../components/SongsLoading';
+
+const LOADING_TIME = 3000;
 
 export default class Album extends Component {
   state = {
@@ -24,11 +27,13 @@ export default class Album extends Component {
 
     const data = await getFavoriteSongs();
     const favoriteSongs = data.map((song) => song.trackId);
-    this.setState({ album: albumDetails.slice(1),
-      info,
-      favoriteSongs,
-      isLoading: false,
-    });
+    setTimeout(() => {
+      this.setState({ album: albumDetails.slice(1),
+        info,
+        favoriteSongs,
+        isLoading: false,
+      });
+    }, LOADING_TIME);
   }
 
   // adsToFavorite = async () => {
@@ -47,7 +52,7 @@ export default class Album extends Component {
         <Header />
         <div className="upper-bar" />
         <section className="album-details">
-          <h3>{ isLoading && <Loading />}</h3>
+          <h3>{ isLoading && <AlbumLoading />}</h3>
           <div data-testid="page-album" className="album-details_cover">
             {album.length > 0 && (
               <div>
@@ -65,6 +70,7 @@ export default class Album extends Component {
           </div>
         </section>
         <section className="songs-container">
+          {isLoading && <SongsLoading />}
           {album.map((song) => (
             <MusicCard
               key={ song.trackId }

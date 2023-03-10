@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addSong } from '../services/favoriteSongsAPI';
-import Loading from '../pages/Loading';
 import './MusicCard.css';
 
 class MusicCard extends Component {
   state = {
-    loading: false,
+    loading: true,
     favorite: false,
   };
 
   componentDidMount() {
     const { trackId, favoriteSongs } = this.props;
     if (favoriteSongs.includes(trackId)) {
-      this.setState({ favorite: true, loading: false });
+      setTimeout(() => {
+        this.setState({ favorite: true, loading: false });
+      }, LOADING_TIME);
     }
   }
 
@@ -40,6 +41,7 @@ class MusicCard extends Component {
     const { loading, favorite } = this.state;
     return (
       <div className="card-container">
+        {/* {loading && <SongsLoading /> } */}
         <div className="song-name-container">
           <p>{trackName}</p>
         </div>
@@ -69,9 +71,6 @@ class MusicCard extends Component {
 
           </label>
         </div>
-        <section>
-          {loading && <Loading />}
-        </section>
       </div>
     );
   }

@@ -6,6 +6,7 @@ import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Header from '../components/Header';
 import Album from '../components/AlbumCard';
 import './Search.css';
+import SearchLoading from '../components/SearchLoading';
 
 const MIN_SEARCH_LENGTH = 2;
 const LOADING_TIME = 3000;
@@ -121,7 +122,7 @@ export default class Search extends Component {
               {success && results.length === 0 && 'No albums were found :('}
             </span>
             <section className="albums-container">
-              {success && results.map((
+              {!success ? <SearchLoading /> : results.map((
                 {
                   artistName,
                   collectionId,
