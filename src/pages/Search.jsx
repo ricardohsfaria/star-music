@@ -74,7 +74,7 @@ export default class Search extends Component {
       search,
       isSearchButtonDisabled,
       resultFor,
-      isLoading,
+      // isLoading,
       results,
       success,
     } = this.state;

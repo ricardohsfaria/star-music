@@ -6,7 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser, faStar } from '@fortawesome/free-regular-svg-icons';
 import { getUser } from '../services/userAPI';
 import Logo from '../img/logo.png';
-import Loading from '../pages/Loading';
+// import Loading from '../pages/Loading';
 import '../pages/Search.css';
 import '../pages/Loading2.css';
 
