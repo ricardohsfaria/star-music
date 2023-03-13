@@ -75,7 +75,7 @@ export default class Search extends Component {
       search,
       isSearchButtonDisabled,
       resultFor,
-      // isLoading,
+      isLoading,
       results,
       success,
     } = this.state;
@@ -88,6 +88,7 @@ export default class Search extends Component {
           <div className="gradient-cloud" />
           <div className="search-bar-container">
             <form onSubmit={ this.searchClick } className="search-bar">
+              {console.log(isLoading)}
               <div className="search-container">
                 <FontAwesomeIcon icon={ faSearch } className="search-input-icon" />
                 <input

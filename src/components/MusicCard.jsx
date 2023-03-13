@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { faHeart } from '@fortawesome/free-solid-svg-icons';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import './MusicCard.css';
 
@@ -9,6 +9,7 @@ class MusicCard extends Component {
   state = {
     loading: true,
     favorite: false,
+    clicked: '',
   };
 
   componentDidMount() {
@@ -20,34 +21,48 @@ class MusicCard extends Component {
     }
   }
 
+  componentDidUpdate(prevState) {
+    const { location } = window;
+    if (prevState.removed !== this.state.removed) location.reload(true);
+  }
+
   addSongToFavorites = async (track, checked) => {
-    this.setState({ loading: true });
     checked = true;
     await addSong(track, checked);
-    this.setState({ loading: false });
   };
 
   onInputChange = ({ target }) => {
-    const { checkedSong } = this.props;
     const { name, checked, id } = target;
 
-    // if (checkedSong) this.setState({ [name]: checkedSong });
-
-    this.setState({ [name]: checked });
+    this.setState({ [name]: checked, clicked: checked });
 
     const { album } = this.props;
     const track = album.find(({ trackId }) => trackId === Number(id));
     if (checked) this.addSongToFavorites(track, checked);
-    if (!checked) removeSong(track);
+    if (!checked && (global.confirm(
+      'Are you sure you want to remove this song from your favorites?',
+    ))) {
+      removeSong(track);
+      this.setState({ removed: true });
+    }
   };
 
   render() {
-    const { trackName, previewUrl, trackId, checkedSong } = this.props;
-    const { loading, favorite } = this.state;
+    const {
+      trackName,
+      previewUrl,
+      trackId,
+      checkedSong,
+      artworkUrl30,
+    } = this.props;
+    const { clicked, favorite, loading } = this.state;
     return (
       <div className="card-container">
-        {/* {loading && <SongsLoading /> } */}
+        {console.log(loading)}
         <div className="song-name-container">
+          <div className="img-container">
+            {artworkUrl30 && <img src={ artworkUrl30 } alt="album icon" />}
+          </div>
           <p>{trackName}</p>
         </div>
         <div className="audio-container">
@@ -64,16 +79,19 @@ class MusicCard extends Component {
         </div>
         <div className="checkbox">
           <label htmlFor={ trackId }>
-            {/* <FontAwesomeIcon icon={ faHeart } className="search-input-icon" /> */}
             <input
+              className="favorite-input"
               type="checkbox"
               data-testid={ `checkbox-music-${trackId}` }
               id={ trackId }
               name="favorite"
               onChange={ this.onInputChange }
-              checked={ checkedSong }
+              checked={ checkedSong || favorite }
             />
-
+            <FontAwesomeIcon
+              icon={ faHeart }
+              className={ `pointer ${clicked} ${checkedSong}` }
+            />
           </label>
         </div>
       </div>
@@ -87,6 +105,8 @@ MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
+  checkedSong: PropTypes.bool.isRequired,
+  artworkUrl30: PropTypes.string.isRequired,
   album: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
   favoriteSongs: PropTypes.arrayOf(PropTypes.shape([])).isRequired,
 };

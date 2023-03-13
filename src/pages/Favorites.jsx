@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
+import './Favorites.css';
 
 export default class Favorites extends Component {
   state = {
@@ -31,12 +32,30 @@ export default class Favorites extends Component {
   };
 
   render() {
-    const { songs } = this.state;
+    const { songs, isLoading, favoriteSongs, info } = this.state;
     return (
-      <div data-testid="page-favorites">
+      <div className="favorites-container">
         <Header />
         <div>
-          {(songs.length > 0 && songs[0]) && songs.map((song, index) => (<MusicCard key={ index } checkedSong={ song.checked } album={ songs } favoriteSongs={ songs } trackName={ song.trackName } previewUrl={ song.previewUrl } trackId={ song.trackId } />))}
+          <div className="upper-bar" />
+          <div className="favorite-songs-container">
+            {console.log(isLoading)}
+            {console.log(favoriteSongs)}
+            {console.log(info)}
+            {(songs.length > 0 && songs[0])
+              && songs.map((song, index) => (
+                <MusicCard
+                  key={ index }
+                  favoriteClicked="favorite-clicked"
+                  checkedSong={ song.checked }
+                  artworkUrl30={ song.artworkUrl30 }
+                  album={ songs }
+                  favoriteSongs={ songs }
+                  trackName={ song.trackName }
+                  previewUrl={ song.previewUrl }
+                  trackId={ song.trackId }
+                />))}
+          </div>
         </div>
       </div>
     );
