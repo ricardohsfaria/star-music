@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import { faHeart } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import './MusicCard.css';
 
 class MusicCard extends Component {
@@ -16,28 +16,33 @@ class MusicCard extends Component {
     if (favoriteSongs.includes(trackId)) {
       setTimeout(() => {
         this.setState({ favorite: true, loading: false });
-      }, LOADING_TIME);
+      }, 0);
     }
   }
 
-  addSongToFavorites = async (track) => {
+  addSongToFavorites = async (track, checked) => {
     this.setState({ loading: true });
-    await addSong(track);
+    checked = true;
+    await addSong(track, checked);
     this.setState({ loading: false });
   };
 
   onInputChange = ({ target }) => {
+    const { checkedSong } = this.props;
     const { name, checked, id } = target;
+
+    // if (checkedSong) this.setState({ [name]: checkedSong });
 
     this.setState({ [name]: checked });
 
     const { album } = this.props;
     const track = album.find(({ trackId }) => trackId === Number(id));
-    if (checked) this.addSongToFavorites(track);
+    if (checked) this.addSongToFavorites(track, checked);
+    if (!checked) removeSong(track);
   };
 
   render() {
-    const { trackName, previewUrl, trackId } = this.props;
+    const { trackName, previewUrl, trackId, checkedSong } = this.props;
     const { loading, favorite } = this.state;
     return (
       <div className="card-container">
@@ -66,7 +71,7 @@ class MusicCard extends Component {
               id={ trackId }
               name="favorite"
               onChange={ this.onInputChange }
-              checked={ favorite }
+              checked={ checkedSong }
             />
 
           </label>

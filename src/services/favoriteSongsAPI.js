@@ -28,16 +28,18 @@ export const getFavoriteSongs = () => new Promise((resolve) => {
   simulateRequest(favoriteSongs)(resolve);
 });
 
-export const addSong = (song) => new Promise((resolve) => {
+export const addSong = (song, checked) => new Promise((resolve) => {
   if (song) {
     const favoriteSongs = readFavoriteSongs();
-    saveFavoriteSongs([...favoriteSongs, song]);
+    const updatedSong = { ...song, checked };
+    saveFavoriteSongs([...favoriteSongs, updatedSong]);
   }
   simulateRequest(SUCCESS_STATUS)(resolve);
 });
 
 export const removeSong = (song) => new Promise((resolve) => {
   const favoriteSongs = readFavoriteSongs();
-  saveFavoriteSongs(favoriteSongs.filter((s) => s.trackId !== song.trackId));
+  const updatedFavoriteSongs = favoriteSongs.filter((s) => s.trackId !== song.trackId);
+  saveFavoriteSongs(updatedFavoriteSongs);
   simulateRequest(SUCCESS_STATUS)(resolve);
 });
