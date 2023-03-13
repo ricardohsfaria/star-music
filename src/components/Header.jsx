@@ -83,7 +83,17 @@ export default class Header extends Component {
       <div
         data-testid="header-user-name"
       >
-        <p className="user-name">{`Welcome, ${user.name}!`}</p>
+        {!user ? (
+          <div className="skeleton">
+            <p
+              className="user-name"
+              style={ { opcacity: 0 } }
+            >
+              _________________
+            </p>
+          </div>
+        ) : (<p className="user-name">{`Welcome, ${user.name}!`}</p>
+        )}
       </div>
     </HeaderContainer>
   );
@@ -92,7 +102,7 @@ export default class Header extends Component {
     const { user } = this.state;
     return (
       <div data-testid="header-component" className="header">
-        { user && this.createHeader(user)}
+        { this.createHeader(user)}
       </div>
     );
   }
