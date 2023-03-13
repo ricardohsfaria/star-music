@@ -37,7 +37,7 @@ export default class Favorites extends Component {
       <div className="favorites-container">
         <Header />
         <div>
-          <div className="upper-bar" />
+          <div className="upper-bar"><h2>Favorite Songs</h2></div>
           <div className="favorite-songs-container">
             {console.log(isLoading)}
             {console.log(favoriteSongs)}
