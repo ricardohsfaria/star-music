@@ -6,7 +6,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser, faStar } from '@fortawesome/free-regular-svg-icons';
 import { getUser } from '../services/userAPI';
 import Logo from '../img/logo.png';
-// import Loading from '../pages/Loading';
+import ProfilePicture from '../img/profile-picture.png';
 import '../pages/Search.css';
 import '../pages/Loading2.css';
 
@@ -92,8 +92,10 @@ export default class Header extends Component {
               _________________
             </p>
           </div>
-        ) : (<p className="user-name">{`Welcome, ${user.name}!`}</p>
-        )}
+        ) : (<div className="profile-section">
+          <img src={ ProfilePicture } alt="profile" className="profile-picture" />
+          <p className="user-name">{`Welcome, ${user.name}!`}</p>
+        </div>)}
       </div>
     </HeaderContainer>
   );

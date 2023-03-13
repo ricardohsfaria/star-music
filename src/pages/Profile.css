@@ -1,0 +1,67 @@
+.page-profile {
+  display: grid;
+  grid-template-columns: 15% 85%;
+}
+
+.profile-container {
+  left: 300px;
+  position: absolute;
+  top: 100px;
+}
+
+.profile-image {
+  height: 250px;
+  width: 250px;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  left: 600px;
+  position: absolute;
+  top: 250px;
+}
+
+.desciption-container {
+  width: 600px;
+}
+
+/* .form-container {
+  left: 500px;
+  position: absolute;
+  top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.2rem;
+    color: #222;
+  }
+
+  .form-container input[type="text"]:focus,
+  .form-container input[type="email"]:focus {
+    outline: none;
+    border-bottom: 2px solid #5c5cff;
+  }
+  
+  .edit-profile-button {
+    background-color: #5c5cff;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-profile-button:hover {
+    background-color: #4444ff;
+  } */
