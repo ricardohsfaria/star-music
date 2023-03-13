@@ -23,7 +23,10 @@ class MusicCard extends Component {
 
   componentDidUpdate(prevState) {
     const { location } = window;
-    if (prevState.removed !== this.state.removed) location.reload(true);
+    if (prevState.removed !== this.state.removed) {
+      this.setState({ removed: false });
+      location.reload(true);
+    }
   }
 
   addSongToFavorites = async (track, checked) => {

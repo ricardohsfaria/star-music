@@ -20,6 +20,10 @@
   width: 400px;
 }
 
+.audio::-webkit-media-controls-panel {
+  background-color: darkgray;
+}
+
 .favorite-clicked {
   color: red;
 }
