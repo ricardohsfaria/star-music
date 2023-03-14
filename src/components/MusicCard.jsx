@@ -10,6 +10,7 @@ class MusicCard extends Component {
     loading: true,
     favorite: false,
     clicked: '',
+    audioRef: null,
   };
 
   componentDidMount() {

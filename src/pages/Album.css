@@ -10,6 +10,12 @@
   height: 220px;
   justify-content: center;
   margin-left: 50px;
+  overflow: hidden;
+}
+
+.upper-bar iframe {
+  height: 600px;
+  width: 100%;
 }
 
 .album-details {
