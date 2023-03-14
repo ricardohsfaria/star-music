@@ -25,7 +25,7 @@ flex-direction: column;
 
 export default class Search extends Component {
   state = {
-    search: 'Katy Perry',
+    search: 'Sigrid',
     isSearchButtonDisabled: true,
     isLoading: false,
     success: false,

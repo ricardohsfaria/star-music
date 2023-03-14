@@ -60,12 +60,15 @@
 .search-bar {
   align-content: center;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
 }
 
 .albums-container {
   display: grid;
   grid-gap: 50px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin: 50px 30px;
 }
 
@@ -87,15 +90,23 @@
   object-fit: cover;
 }
 
+.search-container {
+  display: flex;
+  width: 50%;
+}
+
 .search-bar-input {
   background-color: white;
   border: 1px solid gray;
   border-radius: 20px;
   height: 30px;
+  margin-right: 10px;
+  min-width: 80px;
   opacity: 50%;
   padding-left: 30px;
+  padding-right: 50px;
   transition: all 200ms ease-in-out;
-  width: 400px;
+  width: 80%;
 }
 
 .search-button {
@@ -104,8 +115,8 @@
   border-radius: 30px;
   color: white;
   font-weight: 900;
-  margin-left: 9px;
-  width: 90px;
+  min-width: 80px;
+  width: 10%;
 }
 
 .search-button:hover {
