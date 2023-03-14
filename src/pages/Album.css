@@ -11,6 +11,7 @@
   justify-content: center;
   margin-left: 50px;
   overflow: hidden;
+  width: 100%;
 }
 
 .upper-bar iframe {
