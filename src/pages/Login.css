@@ -1,0 +1,19 @@
+.showcase {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  right: 0;
+  width: 100%;
+}
+
+.video {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
