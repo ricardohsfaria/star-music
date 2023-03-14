@@ -11,7 +11,7 @@ Start the application: npm start<br />
 The application should be available at http://localhost:3000/.
 
 ## Usage
-Upon starting the application and logging in, you will see a search bar at the top of the screen. Type in the name of an artist you wish to search for and press enter or click the search button. The search results with information about the found artists and their albums will be displayed. Click on an album to see more information about them, including a list of samples of their songs and its music video. Click on a sample to listen to the music.
+Upon starting the application and logging in, you will be redirected to the search page, the initial results rendered will be for my favorite artist, Sigrid. You will see a search bar at the top of the screen. Type in the name of an artist you wish to search for and press enter or click the search button. The search results with information about the found artists and their albums will be displayed. Click on an album to see more information about them, including a list of samples of their songs and its music video. Click on a sample to listen to the music.
 
 ## Contribution
 Contributions are welcome! Feel free to open an issue or send a pull request with improvements or fixes.
