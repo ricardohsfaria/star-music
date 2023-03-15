@@ -1,0 +1,41 @@
+.side-links, .user-name {
+  font-size: 1.6rem;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100vh;
+  justify-content: space-between;
+  position: fixed;
+}
+
+.links-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: space-between;
+}
+
+@media ( max-width : 644px ) {
+
+  .header {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100px;
+    justify-content: center;
+    position: relative;
+  }
+
+  .links-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .links-container div {
+    padding: 0 30px;
+  }
+}

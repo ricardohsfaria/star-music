@@ -1,4 +1,4 @@
-.album-container {
+ .album-container {
   display: grid;
   grid-template-columns: 15% 85%;
 }
@@ -43,9 +43,13 @@
 }
 
 .album-name {
-  font-size: small;
+  font-size: 1.5rem;
   font-weight: 400;
   margin-top: -10px;
+}
+
+.artist-name {
+  font-size: 1.3rem;
 }
 
 .songs-container {
@@ -53,3 +57,11 @@
   margin-top: 330px;
   position: absolute;
 }
+
+/* @media ( max-width : 644px ) {
+
+  #search-page {
+    display: grid;
+    grid-template-rows: 15% 85%;
+  }
+} */

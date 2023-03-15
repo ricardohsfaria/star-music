@@ -19,3 +19,21 @@ code {
   display: flex;
   justify-content: center;
 }
+
+html {
+  font-size: 63%;
+}
+
+@media ( min-width : 768px ) {
+
+  html {
+    font-size: 50%;
+  }
+}
+
+@media ( max-width : 768px ) {
+
+  html {
+    font-size: 40%;
+  }
+}

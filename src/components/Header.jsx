@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser, faStar } from '@fortawesome/free-regular-svg-icons';
@@ -9,29 +8,7 @@ import Logo from '../img/logo.png';
 import ProfilePicture from '../img/profile-picture.png';
 import '../pages/Search.css';
 import '../pages/Loading2.css';
-
-const HeaderContainer = styled.header`
-position: fixed;
-align-items: center;
-display: flex;
-justify-content: space-between;
-flex-direction: column;
-flex-wrap: wrap;
-height: 100vh;
-`;
-
-const Links = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 200px;
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import './Header.css';
 
 export default class Header extends Component {
   state = {
@@ -44,42 +21,42 @@ export default class Header extends Component {
   }
 
   createHeader = (user) => (
-    <HeaderContainer>
-      <ImageContainer>
+    <div className="header">
+      <div className="logo-container">
         <img src={ Logo } alt="logo" className="logo" />
-      </ImageContainer>
-      <Links className="links">
-        <div className="search-icon-container">
+      </div>
+      <div className="links-container links">
+        <div className="search-icon-container menu-container">
           <FontAwesomeIcon icon={ faMagnifyingGlass } className="search-icon" />
           <Link
             to="/search"
             data-testid="link-to-search"
             className="side-links"
           >
-            Search
+            <p>Search</p>
           </Link>
         </div>
-        <div className="favoite-container">
+        <div className="favoite-container menu-container">
           <FontAwesomeIcon icon={ faStar } className="star-icon" />
           <Link
             to="/favorites"
             data-testid="link-to-favorites"
             className="side-links"
           >
-            Favorites
+            <p>Favorites</p>
           </Link>
         </div>
-        <div className="profile-icon-container">
-          <FontAwesomeIcon icon={ faCircleUser } />
+        <div className="profile-icon-container menu-container">
+          <FontAwesomeIcon icon={ faCircleUser } className="profile-icon" />
           <Link
             to="/profile"
             data-testid="link-to-profile"
             className="side-links"
           >
-            Profile
+            <p>Profile</p>
           </Link>
         </div>
-      </Links>
+      </div>
       <div
         data-testid="header-user-name"
       >
@@ -97,13 +74,13 @@ export default class Header extends Component {
           <p className="user-name">{`Welcome, ${user.name}!`}</p>
         </div>)}
       </div>
-    </HeaderContainer>
+    </div>
   );
 
   render() {
     const { user } = this.state;
     return (
-      <div data-testid="header-component" className="header">
+      <div data-testid="header-component" className="header-wrapper">
         { this.createHeader(user)}
       </div>
     );

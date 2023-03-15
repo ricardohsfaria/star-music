@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
@@ -7,21 +6,10 @@ import Header from '../components/Header';
 import Album from '../components/AlbumCard';
 import './Search.css';
 import SearchLoading from '../components/SearchLoading';
+import Logo from '../img/logo.png';
 
 const MIN_SEARCH_LENGTH = 2;
 const LOADING_TIME = 3000;
-
-const Container = styled.div`
-background-color: #000000;
-display: grid;
-grid-template-columns: 15% 85%;
-height: 100vh;
-`;
-
-const Main = styled.div`
-display: flex;
-flex-direction: column;
-`;
 
 export default class Search extends Component {
   state = {
@@ -80,13 +68,15 @@ export default class Search extends Component {
       success,
     } = this.state;
     return (
-      <Container data-testid="page-search">
-        <Main>
+      <div className="search-page" data-testid="page-search">
+        <div className="main">
           <Header />
-        </Main>
-        <div>
-          <div className="gradient-cloud" />
+        </div>
+        <div className="content-wrapper">
           <div className="search-bar-container">
+            <div className="logo-container-mobile">
+              <img src={ Logo } alt="logo" className="logo" />
+            </div>
             <form onSubmit={ this.searchClick } className="search-bar">
               {console.log(isLoading)}
               <div className="search-container">
@@ -113,6 +103,7 @@ export default class Search extends Component {
               </button>
             </form>
           </div>
+          <div className="gradient-cloud" />
           <div>
             <section>
               <p className="results-message">
@@ -140,7 +131,7 @@ export default class Search extends Component {
             </section>
           </div>
         </div>
-      </Container>
+      </div>
     );
   }
 }
