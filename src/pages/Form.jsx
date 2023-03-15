@@ -2,17 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Logo from '../img/logo.png';
-
-const LoginContainer = styled.div`
-align-items: center;
-border-radius: 15px;
-display: flex;
-background-color: black;
-height: 400px;
-justify-content: center;
-width: 600px;
-position: absolute;
-`;
+import './Login.css';
 
 const Login = styled.section`
 font-size: 1.5em;
@@ -20,14 +10,6 @@ color: white;
 justify-content: center;
 flex-wrap: wrap;
 text-align: center;
-`;
-
-const LoginForm = styled.form`
-// border: 1px solid red;
-display: flex;
-width: 98%;
-flex-wrap: wrap;
-justify-content: center;
 `;
 
 const input = {
@@ -73,10 +55,10 @@ export default class Form extends Component {
       createUserAndRedirect,
     } = this.props;
     return (
-      <LoginContainer>
+      <div className="login-form">
         <Login>
           <img src={ Logo } alt="TrybeTunes" style={ img } />
-          <LoginForm action="">
+          <form className="login-fields" action="">
             <label htmlFor="loginName">
               <input
                 type="text"
@@ -98,9 +80,9 @@ export default class Form extends Component {
               Entrar
 
             </Button>
-          </LoginForm>
+          </form>
         </Login>
-      </LoginContainer>
+      </div>
     );
   }
 }

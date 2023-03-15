@@ -17,3 +17,31 @@
   width: 100%;
 }
 
+.login-form {
+  align-items: center;
+  background-color: black;
+  border-radius: 15px;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  position: absolute;
+  width: 600px;
+}
+
+.login-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 98%;
+}
+
+@media ( max-width : 644px ) {
+  .login-form {
+    width: 80%;
+    height: 50rem;
+  }
+
+  .login-fields {
+    width: 50rem;
+  }
+}
