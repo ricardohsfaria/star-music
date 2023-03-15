@@ -57,7 +57,9 @@ export default class Album extends Component {
       album, isLoading, favoriteSongs, videoUrl } = this.state;
     return (
       <div className="album-container">
-        <Header />
+        <div className="main">
+          <Header />
+        </div>
         <div className="upper-bar">
           <iframe
             width="100%"
