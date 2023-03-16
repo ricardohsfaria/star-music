@@ -84,12 +84,12 @@ export default class Search extends Component {
                 <input
                   type="text"
                   data-testid="search-artist-input"
-                  className="search-bar-input"
                   value={ search }
                   onChange={ this.toggleSearchButton }
                   id="search"
                   name="search"
                   placeholder="ARTIST NAME"
+                  className="search-bar-input"
                 />
               </div>
               <button

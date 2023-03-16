@@ -35,10 +35,41 @@
   width: 98%;
 }
 
+.name-form-input[ type = 'text' ] {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.login-button {
+  background-color: rgba(166, 66, 215, 1);
+  border: 1px solid rgba(166, 66, 215, 1);
+  border-radius: 15px;
+  color: white;
+  height: 30px;
+  margin-top: 10px;
+  width: 300px;
+}
+
+.login-button:hover {
+
+  /* background: linear-gradient
+  (0deg, rgba(166, 66, 215, 1) 0%, rgba(255, 214, 0, 1) 100%);
+
+  box-shadow: 0 5px 15px rgba(255, 214, 0, 1); */
+  cursor: pointer;
+}
+
+.login-button:active {
+  height: 29px;
+  width: 290px;
+}
+
 @media ( max-width : 644px ) {
+
   .login-form {
-    width: 80%;
     height: 50rem;
+    width: 80%;
   }
 
   .login-fields {

@@ -16,7 +16,7 @@ const input = {
   background: 'transparent',
   border: '1px solid rgba(166, 66, 215, 1)',
   borderRadius: '15px',
-  color: 'white',
+  color: 'gray',
   height: '30px',
   textAlign: 'center',
   width: '300px',
@@ -27,24 +27,6 @@ const img = {
   height: '30%',
   width: '30%',
 };
-
-const Button = styled.button`
-background-color: rgba(166, 66, 215, 1);
-border: 1px solid rgba(166, 66, 215, 1);
-border-radius: 15px;
-color: white;
-margin-top: 10px;
-height: 30px;
-width: 300px;
-:hover {
-  cursor: pointer;
-};
-:active {
-  height: 29px;
-  width: 290px;
-  transition: 300ms;
-}
-`;
 
 export default class Form extends Component {
   render() {
@@ -61,6 +43,7 @@ export default class Form extends Component {
           <form className="login-fields" action="">
             <label htmlFor="loginName">
               <input
+                className="name-form-input"
                 type="text"
                 id="loginName"
                 name="loginName"
@@ -68,18 +51,18 @@ export default class Form extends Component {
                 data-testid="login-name-input"
                 onChange={ onInputChange }
                 style={ input }
-                placeholder="Digite seu nome "
+                placeholder="Enter your name"
               />
             </label>
-            <Button
+            <button
+              className="login-button"
               data-testid="login-submit-button"
               type="submit"
               disabled={ isButtonDisabled }
               onClick={ createUserAndRedirect }
             >
-              Entrar
-
-            </Button>
+              Go
+            </button>
           </form>
         </Login>
       </div>
